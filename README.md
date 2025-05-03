@@ -1,6 +1,6 @@
 # Linux Sysadmin Scripts
 
-This project contains scripts to assist with common command line tasks within Ubuntu (22.04). 
+This project contains scripts to assist with common command line tasks within Ubuntu (22.04).
 
 ## Files
 
@@ -33,4 +33,4 @@ To run the object-oriented version of the script, execute `linux_admin_menu_ai.p
 python3 linux_admin_menu_ai.py
 ```
 
-Follow the on-screen prompts to navigate through the menu and select the desired tasks.
+Follow the on-screen prompts to navigate through the menu and select the desired tasks
