@@ -186,6 +186,15 @@ def ipAddressInfo():
     endTask()
 
 
+def vmwareNetworksStatus():
+    print(f'\nRetrieving VMware Networks Status on {hostname}: \n')
+    print('If networks are not starting run \'sudo vmware-netcfg\'.\n')
+    command = "sudo vmware-networks --status --verbose"
+    result = subprocess.run(command, shell=True, executable="/bin/bash")
+    result.stdout   
+    endTask()
+
+
 def quit():
     print('Quitting...\n')
     exit()
@@ -212,6 +221,7 @@ menu_definitions = {
     13: [listModuleCommands, 'Display a list of module commands'],
     14: [syncTimeDate, 'Sync the time and date using chronyd'],
     15: [ipAddressInfo, 'Retrieve your server\'s public and private IP address information'],
+    16: [vmwareNetworksStatus, 'View VMware Networks Status'],
     0 : [quit, 'Quit']
 }
 
