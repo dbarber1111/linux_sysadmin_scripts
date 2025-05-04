@@ -13,7 +13,6 @@ import subprocess
 import time
 from datetime import datetime
 
-
 class LinuxAdminMenu:
     def __init__(self):
         self.hostname = socket.gethostname()
@@ -38,23 +37,39 @@ class LinuxAdminMenu:
             0: [self.quit, 'Quit']
         }
 
+    def get_style(self):
+        self.PURPLE = '\033[95m'
+        self.CYAN = '\033[96m'
+        self.DARKCYAN = '\033[36m'
+        self.BLUE = '\033[94m'
+        self.GREEN = '\033[92m'
+        self.YELLOW = '\033[93m'
+        self.RED = '\033[91m'
+        # self.ORANGE = '\033[0,33m'
+        self.BOLD = '\033[1m'
+        self.UNDERLINE = '\033[4m'
+        self.OFF = '\033[0m'
+
     def print_menu(self):
+        self.get_style() # Initialize style attributes
         subprocess.run('clear', shell=True, executable="/bin/bash")
         header = self.get_header()
         print(header)
         for key in self.menu_definitions.keys():
             formatted_key = f'{key}'
-            print(f'{formatted_key.ljust(4)} {self.menu_definitions[key][1]}')
+            print(f'{self.DARKCYAN}{self.BOLD}{formatted_key.ljust(4)}{self.OFF}{self.menu_definitions[key][1]}')
 
     def get_header(self):
+        self.get_style()
         return """
-        {}
-        {}
-        {}: {}: {}
-        {}
-        {}
-        """.format('#' * 70, '#' * 2, f'## Linux CLI Administration Assistant', self.hostname, self.now, '#' * 2, '#' * 70)
+{}
+{}
+{}: {}: {}
+{}
+{}
+        """.format('#' * 70, '#' * 2, f'## {self.DARKCYAN}Linux CLI Administration Assistant{self.OFF}', self.hostname, self.now, '#' * 2, '#' * 70)
 
+    
     def end_task(self):
         input("\n\nPress Enter to return to the main menu.")
 
