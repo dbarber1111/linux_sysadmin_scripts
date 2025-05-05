@@ -192,7 +192,9 @@ class LinuxAdminMenu:
         self.end_task()
 
     def quit(self):
-        print('Quitting...\n')
+        print('\nQuitting...\n')
+        time.sleep(3)
+        subprocess.run('clear', shell=True, executable="/bin/bash")
         exit()
 
     def run(self):
