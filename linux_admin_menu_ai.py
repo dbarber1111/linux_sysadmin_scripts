@@ -34,6 +34,7 @@ class LinuxAdminMenu:
             14: [self.sync_time_date, 'Sync the time and date using chronyd'],
             15: [self.ip_address_info, 'Retrieve your server\'s public and private IP address information'],
             16: [self.vmware_networks_status, 'View VMware Networks Status'],
+            17: [self.docker_container_cleanup, 'Cleanup Docker Resources (containers, images, volumes, networks)'],
             0: [self.quit, 'Quit']
         }
 
@@ -45,7 +46,7 @@ class LinuxAdminMenu:
         self.GREEN = '\033[92m'
         self.YELLOW = '\033[93m'
         self.RED = '\033[91m'
-        # self.ORANGE = '\033[0,33m'
+        self.ORANGE = '\033[38;5;214m'
         self.BOLD = '\033[1m'
         self.UNDERLINE = '\033[4m'
         self.OFF = '\033[0m'
@@ -187,6 +188,14 @@ class LinuxAdminMenu:
         print(f'\nRetrieving VMware Networks Status on {self.hostname}: \n')
         print('If networks are not starting run \'sudo vmware-netcfg\'.\n')
         command = "sudo vmware-networks --status --verbose"
+        result = subprocess.run(command, shell=True, executable="/bin/bash", capture_output=True, text=True)
+        print(result.stdout)
+        self.end_task()
+
+    def docker_container_cleanup(self):
+        print(f'\nCleaning up Docker Resources on {self.hostname}: \n')
+        print('This will remove stopped containers, unused networks, dangling images, and build cache.\n')
+        command = ["sudo", "bash", "/home/dbarber/Documents/Scripts/Linux_System_Admin_Scripts/docker_container_cleanup.sh"]
         result = subprocess.run(command, shell=True, executable="/bin/bash", capture_output=True, text=True)
         print(result.stdout)
         self.end_task()
