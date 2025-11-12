@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 ##########################################################################
-# Scriptname    : linux_admin_menu_ai.py
+# Scriptname    : linux_admin_menu.py
 # Description   : Linux CLI Administration Assistant (OOP Version): Utility to assist with common
 #               : command line tasks within Ubuntu (22.04)
 #
@@ -224,4 +224,4 @@ class LinuxAdminMenu:
 
 if __name__ == '__main__':
     menu = LinuxAdminMenu()
-    menu.run()
+    sys.exit(menu.run())
